@@ -10,7 +10,6 @@ import Profile from "../common/Profile/Profile";
 import Cards from "../common/Cards";
 import {useFridaySelector} from "../../m2-bll/store";
 import LearnedCardContainer from '../../../n2_features/f2-packs&cards_YM/b2-cards/LearnedCardContainer';
-import AuthRedirectPage from "../../../n2_features/f1-auth/AuthRedirect/AuthRedirect";
 
 export enum RoutesXPaths {
     PROFILE = '/',
@@ -31,51 +30,25 @@ const RoutesX = () => {
 
     return (
         <div style={{height: '100vh'}}>
-            {/*<Redirect/>*/}
-
             <Routes>
-                <Route path={RoutesXPaths.PROFILE} element={
-                    <AuthRedirectPage>
-                        <Profile/>
-                    </AuthRedirectPage>
-                }/>
+                <Route path={RoutesXPaths.PROFILE} element={<Profile/>}/>
                 <Route path={RoutesXPaths.REGISTER} element={<Register/>}/>
-                <Route path={RoutesXPaths.LOGIN} element={
-                    <Login/>
-                }/>
+                <Route path={RoutesXPaths.LOGIN} element={<Login/>}/>
                 <Route path={RoutesXPaths.RECOVERY} element={<PasswordRecovery/>}/>
                 <Route path={RoutesXPaths.SET_PASS} element={<NewPassword/>}/>
-                <Route path={RoutesXPaths.PACKS} element={
-                    <AuthRedirectPage>
-                        <Packs/>
-                    </AuthRedirectPage>
-                }/>
-                <Route path={RoutesXPaths.CARDS} element={
-                    <AuthRedirectPage>
-                        <Cards/>
-                    </AuthRedirectPage>
-                }/>
-                <Route path={RoutesXPaths.CARDS_WITH_ID} element={
-                    <AuthRedirectPage>
-                        <Cards/>
-                    </AuthRedirectPage>
-                }/>
-                <Route path={RoutesXPaths.LEARNED_CARD} element={
-                    <AuthRedirectPage>
-                        <LearnedCardContainer/>
-                    </AuthRedirectPage>
-                }/>
-                <Route path={RoutesXPaths.LEARNED_CARD_WITH_ID} element={
-                    <AuthRedirectPage>
-                        <LearnedCardContainer/>
-                    </AuthRedirectPage>
-                }/>
+                <Route path={RoutesXPaths.PACKS} element={<Packs/>}/>
+                <Route path={RoutesXPaths.CARDS} element={<Cards/>}/>
+                <Route path={RoutesXPaths.CARDS_WITH_ID} element={<Cards/>}/>
+                <Route path={RoutesXPaths.LEARNED_CARD} element={<LearnedCardContainer/>}/>
+                <Route path={RoutesXPaths.LEARNED_CARD_WITH_ID} element={<LearnedCardContainer/>}/>
                 <Route path={RoutesXPaths.LOGOUT} element={<Logout/>}/>
                 <Route path={RoutesXPaths.NOT_FOUND}
                        element={<h1 style={{textAlign: 'center'}}>404:PAGE NOT FOUND</h1>}/>
                 <Route path={'*'} element={<Navigate to={RoutesXPaths.NOT_FOUND}/>}/>
 
             </Routes>
+
+            {/*<Redirect/>*/}
         </div>
     )
 }
@@ -88,25 +61,9 @@ export const Redirect = () => {
 
     const inLoggedIn = useFridaySelector<boolean>(state => state.login.isLoggedIn)
 
-
     if (!inLoggedIn && pathname !== RoutesXPaths.LOGIN) {
-        debugger
-        if (pathname === RoutesXPaths.SET_PASS) {
-            debugger
-        } else if (pathname === RoutesXPaths.REGISTER) {
-            debugger
-        } else if (pathname === RoutesXPaths.RECOVERY) {
-            debugger
-        } else if (!inLoggedIn) {
-            debugger
-            return <Navigate to={RoutesXPaths.LOGIN}/>
-        }
-        // else {
-        //     debugger
-        //     return <Navigate to={RoutesXPaths.LOGIN}/>
-        // }
+        return <Navigate to={RoutesXPaths.LOGIN}/>
     }
-
 
     return (
         <>
