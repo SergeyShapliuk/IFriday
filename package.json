@@ -1,8 +1,8 @@
 {
-  "name": "IFriday",
+  "name": "team-project",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://sergeyshapliuk.github.io/team-project/",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
